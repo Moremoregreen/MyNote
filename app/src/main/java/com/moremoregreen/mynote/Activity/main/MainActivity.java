@@ -1,9 +1,12 @@
-package com.moremoregreen.mynote;
+package com.moremoregreen.mynote.Activity.main;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.moremoregreen.mynote.Activity.editor.EditorActivity;
+import com.moremoregreen.mynote.R;
 
 public class MainActivity extends AppCompatActivity {
     FloatingActionButton fab;

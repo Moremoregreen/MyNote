@@ -1,4 +1,4 @@
-package com.moremoregreen.mynote;
+package com.moremoregreen.mynote.Api;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

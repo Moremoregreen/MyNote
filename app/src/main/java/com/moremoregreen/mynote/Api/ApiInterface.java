@@ -1,4 +1,4 @@
-package com.moremoregreen.mynote;
+package com.moremoregreen.mynote.Api;
 
 import com.moremoregreen.mynote.Model.Note;
 
