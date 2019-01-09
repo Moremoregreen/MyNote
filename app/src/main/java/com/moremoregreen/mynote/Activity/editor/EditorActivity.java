@@ -1,7 +1,9 @@
 package com.moremoregreen.mynote.Activity.editor;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -104,7 +106,15 @@ public class EditorActivity extends AppCompatActivity implements EditorView {
                 }
                 return true;
             case R.id.delete:
-
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+                alertDialog.setTitle("Confime!");
+                alertDialog.setMessage("Are you sure?");
+                alertDialog.setNegativeButton("Yes", (dialog, which) ->{
+                        dialog.dismiss();
+                presenter.deleteNote(id);
+                });
+                alertDialog.setPositiveButton("Cancle", (dialog, which) -> dialog.dismiss());
+                alertDialog.show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
