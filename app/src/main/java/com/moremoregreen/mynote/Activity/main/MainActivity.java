@@ -17,6 +17,8 @@ import com.moremoregreen.mynote.R;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MainView {
+    private static final int INTENT_ADD = 100;
+    private static final int INTENT_EDIT = 200;
     FloatingActionButton fab;
     RecyclerView recyclerView;
     SwipeRefreshLayout swipeRefresh;
@@ -38,7 +40,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
         fab = findViewById(R.id.add);
         //(view -> {}) add lamba support
         fab.setOnClickListener(view -> {
-            startActivity(new Intent(MainActivity.this, EditorActivity.class));
+            startActivityForResult(new Intent(MainActivity.this, EditorActivity.class),
+                    INTENT_ADD);
         });
 
         presenter = new MainPresenter(this);
@@ -49,9 +52,30 @@ public class MainActivity extends AppCompatActivity implements MainView {
         );
 
         itemClickListener = ((view, position) -> {
+            int id = note.get(position).getId();
             String title = note.get(position).getTitle();
-            Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
+            String notes = note.get(position).getNote();
+            int color  = note.get(position).getColor();
+            Intent intent = new Intent(this,EditorActivity.class);
+            intent.putExtra("id",id);
+            intent.putExtra("title",title);
+            intent.putExtra("note",notes);
+            intent.putExtra("color",color);
+            startActivityForResult(intent,INTENT_EDIT);
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == INTENT_ADD  && resultCode ==RESULT_OK){
+            presenter.getData(); //Reload Data
+        }else if(requestCode == INTENT_EDIT && resultCode ==RESULT_OK){
+            presenter.getData(); //Reload Data
+        }
+//        else if (requestCode == INTENT_EDIT && resultCode ==RESULT_OK){
+//            presenter.getData();
+//        }
     }
 
     @Override

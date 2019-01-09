@@ -4,4 +4,8 @@
     <string name="enter_note">Enter a note...</string>
     <string name="save">Save</string>
     <string name="date">8 Jan 2019</string>
+    <string name="edit">Edit</string>
+    <string name="delete">delete</string>
+    <string name="update">Update</string>
+    <string name="Update_Note">Update Note</string>
 </resources>
